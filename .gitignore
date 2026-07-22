@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# Local IDE/tool config (machine-specific, not project config)
+.claude/
+.vscode/
+
+# Legacy local dataset output directory (data is no longer committed to git;
+# scripts/download_*.py now write to $DR_DATA_HOME, default /root/dataset).
+# Leading slash anchors this to the repo root only — otherwise it would also
+# match docs/datasets/.
+/datasets/
