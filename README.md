@@ -1,9 +1,28 @@
 # dr-datasets
 
 A catalog of embedding/feature datasets for dimensionality-reduction (DR) experiments
-(UMAP, gpumap, t-SNE, ...). This repo ships **code and documentation only** — no data files.
+(UMAP, t-SNE, ...). This repo ships **code and documentation only** — no data files.
 Each dataset has a download script (or, if no automated download exists, manual instructions)
 that fetches it from its public source into a local directory.
+
+## Datasets
+
+| dataset | shape (N, f) | domain | download |
+|---|---|---|---|
+| [`emnist_digits`](docs/datasets/emnist_digits.md) | (280,000, 784) | handwritten digit images (raw pixels) | script |
+| [`covertype`](docs/datasets/covertype.md) | (581,012, 54) | forest-cover tabular features | script |
+| [`svhn`](docs/datasets/svhn.md) | (630,420, 768) | CLIP embeddings of digit images | manual |
+| [`sift1m`](docs/datasets/sift1m.md) | (1,000,000, 128) | SIFT image descriptors (ANN benchmark) | script |
+| [`amazon_reviews_multi`](docs/datasets/amazon_reviews_multi.md) | (1,200,000, 768) | multilingual review sentence embeddings | script |
+| [`mouse_brain_1m_neurons`](docs/datasets/mouse_brain_1m_neurons.md) | (1,306,127, 50) | scRNA-seq PCA embeddings | script (GPU for one step) |
+| [`glove_840b_300d`](docs/datasets/glove_840b_300d.md) | (2,196,017, 300) | pretrained GloVe word vectors | script |
+| [`google_news_word2vec300`](docs/datasets/google_news_word2vec300.md) | (3,000,000, 300) | pretrained word2vec word vectors | script |
+| [`kddcup99`](docs/datasets/kddcup99.md) | (4,898,431, 122) | network-intrusion tabular features | script |
+| [`higgs`](docs/datasets/higgs.md) | (5,000,000, 28) | particle-physics tabular features | script |
+
+Click a dataset name for its full description, source, and download instructions. See
+[`DATASETS.md`](DATASETS.md) for the same table with dtype/docs columns, plus how to add a
+new dataset.
 
 ```
 scripts/download_<name>.py   # fetches a dataset from its public source
@@ -71,11 +90,6 @@ loader.list_arrays("mouse_brain_1m_neurons")    # -> all .npy files in that data
 `load_embeddings` memory-maps by default (`mmap="r"`) since several of these arrays are
 multiple GB; pass `mmap=None` to force a full in-memory load. If a dataset hasn't been
 downloaded yet, `loader` raises `FileNotFoundError` with the exact command to run.
-
-## Dataset catalog
-
-See [`DATASETS.md`](DATASETS.md) for the full table (shape, dtype, download method, docs
-link per dataset).
 
 ## Adding a new dataset
 
